@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/menu/css/menu.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Rubik+Scribble&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <title>Itens</title>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center">
+      <img src="/img/logo.png" class="logo" />
+      <a class="logo-text">Fornecedora</a>
+    </div>
+
+    </style>
+    <ul>
+      <li><a href="#about">Sobre</a></li>
+      <li class="active"><a href="#">Produtos</a></li>
+      <li><a href="#services">Serviços</a></li>
+      <li><a href="#contact">Contato</a></li>
+      <li class="cart-icon">
+        <img
+          class="carrinho"
+          src="/img/carrinho.png"
+          alt="Carrinho de compras"
+        />
+      </li>
+      <li class="search">
+        <input type="text" placeholder="Pesquisar" />
+        <button type="button">Buscar</button>
+      </li>
+    </ul>
+    <template>
+      <swiper
+        class="swiper"
+        :modules="modules"
+        :space-between="30"
+        :effect="'fade'"
+        :navigation="true"
+        :pagination="{ clickable: true }"
+      >
+        <swiper-slide class="slide" v-for="index in 5" :key="index">
+          <img :src="`/images/example/${index}.jpg`" />
+        </swiper-slide>
+      </swiper>
+    </template>
+    
+    <script lang="ts">
+      import { defineComponent } from 'vue'
+      import { Pagination, Navigation, EffectFade } from 'swiper/modules'
+      import { Swiper, SwiperSlide } from 'swiper/vue'
+      import 'swiper/css'
+      import 'swiper/css/pagination'
+      import 'swiper/css/navigation'
+      import 'swiper/css/effect-fade'
+    
+      export default defineComponent({
+        name: 'swiper-example-fade-effect',
+        title: 'Fade effect',
+        url: import.meta.url,
+        components: {
+          Swiper,
+          SwiperSlide
+        },
+        setup() {
+          return {
+            modules: [Pagination, Navigation, EffectFade]
+          }
+        }
+      })
+    </script>
+    
+    <style lang="scss" scoped>
+      @import '@/styles/variables.scss';
+      @import '@/styles/mixins.scss';
+      @import './style.scss';
+    
+      .swiper {
+        @include swiper-wrapper($height: 360px);
+    
+        .slide {
+          @include swiper-slide();
+    
+          img {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    </style>
+    <div class="card-container">
+      <div class="card">
+          <div class="card-img">
+              <img src="/img/balde.png" alt="Imagem do balde" />
+          </div>
+          <div class="card-info">
+              <p class="text-title">Baldes de sorvete</p>
+              <p class="text-body">
+                  Balde Retangular 20 Litros com Tampa Lacre de Segurança
+              </p>
+          </div>
+          <div class="card-footer">
+            <div class="button-container">
+              <button class="btn" onclick="subtrairItem()">-</button>
+              <span id="quantidadeItens" style="display: none;"></span>
+              <button class="btn" onclick="adicionarItem()">+</button>
+            </div>          
+              <span id="precoProduto" class="text-title">R$50.00</span>
+              <div class="card-button" onclick="salvarItem()">
+                  <svg class="svg-icon" viewBox="0 0 20 20">
+                <path
+                  d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"
+                ></path>
+                <path
+                  d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"
+                ></path>
+                <path
+                  d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"
+                ></path>
+              </svg>
+            </div>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="/img/colher.png" alt="Colher de Sorvete" />
+          </div>
+          <div class="card-info">
+            <p class="text-title">Colher de Sorvete</p>
+            <p class="text-body">
+              Colher Sorvete Pegador Alumínio Concha Profissional
+            </p>
+          </div>
+          <div class="card-footer">
+            <span id="precoProduto" class="text-title">R$30.00</span>
+            <div class="card-button">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path
+                  d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"
+                ></path>
+                <path
+                  d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"
+                ></path>
+                <path
+                  d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="/img/pazinha.png" />
+          </div>
+          <div class="card-info">
+            <p class="text-title">1.000 Pazinha</p>
+            <p class="text-body">
+              1 Pacote de pazinhas para sorvete com 1.000 unidades
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="text-title">R$70.00</span>
+            <div class="card-button">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path
+                  d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"
+                ></path>
+                <path
+                  d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"
+                ></path>
+                <path
+                  d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="/img/cobertura.png" />
+          </div>
+          <div class="card-info">
+            <p class="text-title">Cobertura</p>
+            <p class="text-body">
+              Pode ser aplicada em decoração de sorvetes e picolés
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="text-title">R$25.00</span>
+            <div class="card-button">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path
+                  d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"
+                ></path>
+                <path
+                  d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"
+                ></path>
+                <path
+                  d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/menu/js/menu.js"></script>
+  </body>
+</html>
